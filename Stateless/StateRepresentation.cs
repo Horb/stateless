@@ -25,6 +25,8 @@ namespace Stateless
 
             readonly ICollection<StateRepresentation> _substates = new List<StateRepresentation>();
 
+            public bool IgnoreUnmappedTriggers { get; set; }
+
             public StateRepresentation(TState state)
             {
                 _state = state;

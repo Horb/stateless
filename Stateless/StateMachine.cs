@@ -178,8 +178,15 @@ namespace Stateless
             TriggerBehaviour triggerBehaviour;
             if (!CurrentRepresentation.TryFindHandler(trigger, out triggerBehaviour))
             {
-                _unhandledTriggerAction(CurrentRepresentation.UnderlyingState, trigger);
-                return;
+                if (CurrentRepresentation.IgnoreUnmappedTriggers)
+                {
+                    triggerBehaviour = new IgnoredTriggerBehaviour(trigger, () => true);
+                }
+                else
+                {
+                    _unhandledTriggerAction(CurrentRepresentation.UnderlyingState, trigger);
+                    return;
+                }
             }
 
             var source = State;

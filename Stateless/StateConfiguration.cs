@@ -102,6 +102,16 @@ namespace Stateless
             }
 
             /// <summary>
+            /// Ignore any triggers that have not been explicitely mapped.
+            /// </summary>
+            /// <returns></returns>
+            public StateConfiguration IgnoreUnmapped()
+            {
+                _representation.IgnoreUnmappedTriggers = true;
+                return this;
+            }
+
+            /// <summary>
             /// Ignore the specified trigger when in the configured state, if the guard
             /// returns true..
             /// </summary>
